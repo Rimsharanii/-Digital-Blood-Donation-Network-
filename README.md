@@ -1,139 +1,183 @@
-🩸 Digital Blood Donation Network
-A web-based platform developed to connect blood donors with patients in need, streamlining the process of blood donation requests, donor registration, and real-time communication — built as a Final Year Project.
+# 🩸 Digital Blood Donation Network
 
-📋 Project Overview
-The Digital Blood Donation Network is a full-stack MERN application that addresses the critical challenge of finding compatible blood donors quickly during medical emergencies. The system provides a centralized platform where donors can register their availability, patients or hospitals can post blood requests, and both parties can connect efficiently through a secure, verified process.
-Problem Statement
-In emergency situations, finding the right blood group from a compatible donor is time-consuming and often relies on manual phone calls and social media posts. This platform digitalizes and automates that process.
-Objectives
+A web-based platform connecting blood donors with patients in need, streamlining donation requests, donor registration, and real-time communication — built as a Final Year Project.
 
-To provide a centralized database of registered blood donors
-To enable patients to post urgent blood requests
-To implement secure user authentication with OTP email verification
-To create a responsive, accessible interface usable on any device
-To automate deployment using modern CI/CD practices
+---
 
+## 👨‍💻 Developed By
 
-✨ Key Features
+**Students Name:** Syeda Faiza, Rimsha Rani
+**Supervisor:** Dr. Muhammad Adeelcollege
+**Institution:** Uniersity of Punjab| Wisdom Degree   
+**Department:** Computer Science 
 
-User Authentication — Secure registration and login using JWT tokens and bcrypt password hashing
-OTP Verification — Email-based one-time password verification via Nodemailer
-Donor Registration — Donors can register with blood group, city, contact info, and availability status
-Blood Request Management — Patients can post, update, and manage blood requests
-Donor Search — Filter donors by blood group and location
-Feedback System — Users can submit ratings and reviews
-Responsive Design — Fully mobile-friendly UI built with Tailwind CSS
-Auto Deployment — Continuous deployment pipeline via GitHub and Vercel
+---
 
+## 📋 Project Overview
 
-🛠️ Technology Stack
-LayerTechnologyFrontendReact.js, React Router v6, Tailwind CSS, AxiosBackendNode.js (v18/24), Express.jsDatabaseMongoDB Atlas (Cloud)AuthenticationJSON Web Tokens (JWT), bcryptEmail ServiceNodemailerHostingVercel (Frontend + CDN)Version ControlGit, GitHubCI/CDVercel Auto-Deploy
+The **Digital Blood Donation Network** is a full-stack MERN application that addresses the critical challenge of finding compatible blood donors quickly during medical emergencies. The system provides a centralized platform where donors can register their availability, patients can post blood requests, and both parties connect through a secure, verified process.
 
-🏗️ System Architecture
+### Problem Statement
+Finding the right blood group in an emergency is time-consuming and relies on manual calls and social media. This platform digitalizes and automates that process.
+
+### Objectives
+- Provide a centralized database of registered blood donors
+- Enable patients to post urgent blood requests
+- Implement secure authentication with OTP email verification
+- Create a responsive interface usable on any device
+- Automate deployment using modern CI/CD practices
+
+---
+
+## ✨ Key Features
+
+- **User Authentication** — Secure login and registration using JWT and bcrypt
+- **OTP Verification** — Email-based one-time password via Nodemailer
+- **Donor Registration** — Register with blood group, city, and availability
+- **Blood Request Management** — Post, update, and manage blood requests
+- **Donor Search** — Filter donors by blood group and location
+- **Feedback System** — Submit ratings and reviews
+- **Responsive Design** — Mobile-friendly UI with Tailwind CSS
+- **Auto Deployment** — CI/CD pipeline via GitHub and Vercel
+
+---
+
+## 🛠️ Technology Stack
+
+**Frontend**
+- React.js (Single Page Application)
+- React Router v6
+- Tailwind CSS
+- Axios
+
+**Backend**
+- Node.js v18/24
+- Express.js
+- JWT (JSON Web Tokens)
+- bcrypt
+- Nodemailer
+
+**Database**
+- MongoDB Atlas (Cloud)
+
+**DevOps**
+- Vercel (Hosting + CDN)
+- GitHub (Version Control)
+- Vercel Auto-Deploy (CI/CD)
+
+---
+
+## 🏗️ System Architecture
+
+**Client Layer**  
 Browser (Chrome / Firefox / Safari / Edge)
-             │  HTTPS · TLS 1.3
-             ▼
-┌────────────────────────────────────┐
-│         Vercel CDN                 │
-│   React.js Single Page Application │
-│   React Router · Tailwind · Axios  │
-└────────────────────────────────────┘
-             │  HTTPS REST · JSON
-             ▼
-┌────────────────────────────────────┐
-│      Express.js API Server         │
-│         Node.js 18/24              │
-│                                    │
-│  Middleware: JWT · bcrypt ·        │
-│             Nodemailer             │
-│                                    │
-│  Services: User · Donor ·          │
-│   Blood Request · Feedback · OTP   │
-└────────────────────────────────────┘
-             │  MongoDB Wire Protocol · TLS
-             ▼
-┌────────────────────────────────────┐
-│          MongoDB Atlas             │
-│  Collections: users · donors ·     │
-│  blood_requests · feedback · otps  │
-└────────────────────────────────────┘
 
-CI/CD: GitHub Push → Vercel Build → Auto Deploy
+↓ HTTPS · TLS 1.3
 
-📁 Project Structure
+**Frontend — Vercel CDN**  
+React.js SPA · React Router v6 · Tailwind CSS · Axios
+
+↓ HTTPS REST · JSON
+
+**Backend — Express.js API Server**  
+Node.js 18/24  
+Middleware: JWT Auth · bcrypt · Nodemailer  
+Services: User · Donor · Blood Request · Feedback · OTP
+
+↓ MongoDB Wire Protocol · TLS
+
+**Database — MongoDB Atlas**  
+Collections: users · donors · blood_requests · feedback · otps
+
+**CI/CD Pipeline**  
+GitHub Push → Vercel Build & Test → Auto Deploy to CDN
+
+---
+
+## 📁 Project Structure
 digital-blood-donation-network/
-│
-├── client/                    # Frontend (React.js)
+├── client/                   # Frontend (React.js)
 │   └── src/
-│       ├── components/        # Reusable UI components
-│       ├── pages/             # Application pages
-│       ├── services/          # Axios API call functions
-│       └── App.jsx            # Root component & routing
+│       ├── components/       # Reusable UI components
+│       ├── pages/            # Application pages
+│       ├── services/         # Axios API call functions
+│       └── App.jsx           # Root component & routing
 │
-├── server/                    # Backend (Express.js)
-│   ├── config/                # Database connection
-│   ├── controllers/           # Route handler logic
-│   ├── middleware/            # JWT auth & error handling
-│   ├── models/                # Mongoose data schemas
-│   ├── routes/                # API route definitions
-│   ├── services/              # Business logic modules
-│   └── server.js              # Entry point
-│
-└── README.md
+└── server/                   # Backend (Express.js)
+├── config/               # Database connection
+├── controllers/          # Route handler logic
+├── middleware/           # JWT auth & error handling
+├── models/               # Mongoose data schemas
+├── routes/               # API route definitions
+├── services/             # Business logic modules
+└── server.js             # Entry point
+---
 
+## 🗄️ Database Collections
 
+**users** — Registered user accounts and credentials  
+**donors** — Donor profiles with blood group and location  
+**blood_requests** — Patient blood request records  
+**feedback** — User ratings and reviews  
+**otps** — Temporary OTP records for email verification
 
-⚙️ Installation & Setup
-Requirements
+---
 
-Node.js v18 or above
-MongoDB Atlas account
-Gmail account (for email/OTP service)
+## 🔗 API Overview
 
-Steps
-bash# 1. Clone the repository
-git clone https://github.com/your-username/digital-blood-donation-network.git
+**Authentication** `/api/auth`  
+Register · Login · Verify OTP · Forgot Password
 
-# 2. Install backend dependencies
-cd server && npm install
+**Donors** `/api/donors`  
+Create · Read · Update donor profile
 
-# 3. Install frontend dependencies
-cd ../client && npm install
+**Blood Requests** `/api/requests`  
+Create · Read · Update · Delete requests
 
-# 4. Create .env file in /server with the following:
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_email_app_password
-CLIENT_URL=http://localhost:3000
+**Feedback** `/api/feedback`  
+Submit and retrieve feedback
 
-# 5. Run the application
-cd server && npm run dev     # Backend on port 5000
-cd client && npm start       # Frontend on port 3000
+---
 
-🚀 Deployment
-The application is deployed using Vercel with an automated CI/CD pipeline:
+## ⚙️ Installation & Setup
 
-Code is pushed to the main branch on GitHub
-Vercel detects the push via webhook
-The build and test process runs automatically
-On success, the updated application is deployed live to the global CDN
+**Requirements**
+- Node.js v18 or above
+- MongoDB Atlas account
+- Gmail account (for OTP/email service)
 
-Live URL: https://your-app.vercel.app
+Frontend runs on http://localhost:3000  
+Backend runs on http://localhost:5000
 
-🔒 Security Measures
+---
 
-Passwords are hashed using bcrypt before storage — never stored as plain text
-All protected routes require a valid JWT token in the request header
-Email verification via OTP prevents fake account registration
-Database connection uses TLS encryption via MongoDB Atlas
-Environment variables store all sensitive credentials — never hardcoded
+## 🚀 Deployment
 
+Deployed on **Vercel** with automated CI/CD:
 
-📄 License
-This project is submitted as an academic Final Year Project at [Your Institution Name].
-All rights reserved © 2025 — [Your Full Name]
+1. Push code to `main` branch on GitHub
+2. Vercel detects the push via webhook
+3. Build and test runs automatically
+4. On success, app is deployed live to the global CDN
 
+**Live URL:** https://digital-blood-donation-network.vercel.app/
+---
 
-"Every drop counts — technology can help deliver it faster."
+## 🔒 Security Measures
+
+- Passwords hashed with **bcrypt** — never stored as plain text
+- All protected routes require a valid **JWT token**
+- **OTP verification** prevents fake registrations
+- Database uses **TLS encryption** via MongoDB Atlas
+- All credentials stored in **environment variables**
+
+---
+
+## 📄 License
+
+Submitted as a Final Year Project at University of Punjab,Lahore 
+All rights reserved © 2025 —
+
+---
+
+> *"Every drop counts — technology can help deliver it faster."*
