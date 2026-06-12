@@ -12,7 +12,6 @@ const userSchema = new mongoose.Schema({
     lastDonationDate: { type: Date },
     availability:     { type: Boolean, default: true },
     isVerified:       { type: Boolean, default: false },
-    // Distance ke liye coordinates
     location: {
         lat: { type: Number, default: null },
         lng: { type: Number, default: null },
