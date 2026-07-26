@@ -4,17 +4,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import LoginModal from './LoginModal';
 import DonationVideo from '../assets/blood-donation.mp4';
-
 export default function VideoLoginSection() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [selectedRole, setSelectedRole] = useState(null);
   const navigate = useNavigate();
-
   const handleRoleSelect = (role) => {
     setSelectedRole(role);
     setShowLoginModal(true);
   };
-
   const handleLoginSubmit = async (formData) => {
     try {
       // Signup mein OTP verify karna hai — /register route pe otp bhi jayega
@@ -22,10 +19,10 @@ export default function VideoLoginSection() {
       const response = await fetch(`http://localhost:5000${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // CHANGED: role ab sirf formData se aayega (jo user ne modal ke andar select kiya),
-        // pehle yahan "role: selectedRole" likh kar usko overwrite kar diya jata tha —
-        // isse modal ke andar role badalne wala naya feature kaam nahi karta tha.
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          role: selectedRole
+        })
       });
       const data = await response.json();
       if (data.success) {
@@ -46,7 +43,6 @@ export default function VideoLoginSection() {
       toast.error("Backend server nahi chal raha!");
     }
   };
-
   return (
     <>
       <section id="login" className="py-16 bg-white overflow-hidden">
@@ -64,22 +60,26 @@ export default function VideoLoginSection() {
                 </video>
               </div>
             </motion.div>
-
-            {/* Button Part — CHANGED: teen buttons ki jagah ab ek hi "Login" button hai.
-                Role ab LoginModal ke andar user khud select karta hai. */}
+            {/* Buttons Part */}
             <div className="space-y-4">
               <h2 className="text-3xl font-bold mb-6">Join Our Community</h2>
-              <button
-                onClick={() => handleRoleSelect('donor')}
-                className="w-full bg-red-600 text-white px-8 py-4 rounded-xl font-semibold shadow-md hover:bg-red-700 transition"
-              >
-                Login
-              </button>
+              {[
+                { id: 'donor', label: 'Login as Blood Donor', color: 'bg-red-600' },
+                { id: 'seeker', label: 'Login as Blood Seeker', color: 'bg-gray-800' },
+                { id: 'admin', label: 'Login as Admin', color: 'bg-blue-600' },
+              ].map((btn) => (
+                <button
+                  key={btn.id}
+                  onClick={() => handleRoleSelect(btn.id)}
+                  className={`w-full ${btn.color} text-white px-8 py-4 rounded-xl font-semibold shadow-md`}
+                >
+                  {btn.label}
+                </button>
+              ))}
             </div>
           </div>
         </div>
       </section>
-
       <AnimatePresence>
         {showLoginModal && (
           <LoginModal
